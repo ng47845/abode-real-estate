@@ -128,7 +128,7 @@
   }, true)
 
   /**
-   * Scrool with ofset on links with a class name .scrollto
+   * Scroll with offset on links with a class name .scrollto
    */
   on('click', '.scrollto', function(e) {
     if (select(this.hash)) {
@@ -233,3 +233,161 @@
   });
 
 })()
+
+/**
+ * Contact form validation
+ */
+function validateForm() {
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('email');
+  const messageInput = document.getElementById('message');
+
+  const name = nameInput.value.trim();
+  const email = emailInput.value.trim();
+  const message = messageInput.value.trim();
+
+  nameInput.classList.remove('error');
+  emailInput.classList.remove('error');
+  messageInput.classList.remove('error');
+
+  let isValid = true;
+
+  if (name === '') {
+      nameInput.classList.add('error');
+      isValid = false;
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+      emailInput.classList.add('error');
+      isValid = false;
+  }
+
+  if (message === '') {
+      messageInput.classList.add('error');
+      isValid = false;
+  }
+
+  if (isValid) {
+      alert('Form submitted successfully!');
+  } else {
+      alert('Please fill out all fields correctly.');
+  }
+}
+
+/**
+ * Swapping between login and register forms
+ */
+document.addEventListener("DOMContentLoaded", function () {
+  var loginForm = document.querySelector(".login_form");
+  var signupForm = document.querySelector(".signup_form");
+  var loginLink = document.getElementById("loginLink");
+  var signupLink = document.getElementById("signupLink");
+  var breadcrumbPage = document.getElementById("breadcrumbPage");
+
+  function showLoginForm() {
+    loginForm.classList.remove("hidden");
+    signupForm.classList.add("hidden");
+    breadcrumbPage.textContent = "Login Page";
+  }
+
+  function showSignupForm() {
+    loginForm.classList.add("hidden");
+    signupForm.classList.remove("hidden");
+    breadcrumbPage.textContent = "Signup Page";
+  }
+
+    if (window.location.hash === "#signup") {
+      showSignupForm();
+    } else {
+      showLoginForm();
+    }
+
+  loginLink.addEventListener("click", function () {
+    showLoginForm();
+    window.location.hash = "login";
+  });
+
+  signupLink.addEventListener("click", function () {
+    showSignupForm();
+    window.location.hash = "signup";
+  });
+});
+
+/*
+* Login and register form validation
+*/
+document.addEventListener("DOMContentLoaded", function () {
+  const loginForm = document.querySelector(".login_form form");
+  const signupForm = document.querySelector(".signup_form form");
+
+  function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  function validatePassword(password) {
+    return password.trim() !== "";
+  }
+
+  function validateLoginForm() {
+    const emailInput = loginForm.querySelector('input[type="email"]');
+    const passwordInput = loginForm.querySelector('input[type="password"]');
+
+    const email = emailInput.value;
+    const password = passwordInput.value;
+
+    if (!validateEmail(email)) {
+      alert("Please enter a valid email address.");
+      return false;
+    }
+
+    if (!validatePassword(password)) {
+      alert("Please enter your password.");
+      return false;
+    }
+
+    return true;
+  }
+
+  function validateSignupForm() {
+    const emailInput = signupForm.querySelector('input[type="email"]');
+    const passwordInput = signupForm.querySelector('input[type="password"]');
+    const confirmPasswordInput = signupForm.querySelector(
+      'input[placeholder="Confirm password"]'
+    );
+
+    const email = emailInput.value;
+    const password = passwordInput.value;
+    const confirmPassword = confirmPasswordInput.value;
+
+    if (!validateEmail(email)) {
+      alert("Please enter a valid email address.");
+      return false;
+    }
+
+    if (!validatePassword(password)) {
+      alert("Please enter a password.");
+      return false;
+    }
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match.");
+      return false;
+    }
+
+    return true;
+  }
+
+  loginForm.addEventListener("submit", function (event) {
+    if (!validateLoginForm()) {
+      event.preventDefault();
+    }
+  });
+
+  signupForm.addEventListener("submit", function (event) {
+    if (!validateSignupForm()) {
+      event.preventDefault();
+    }
+  });
+});
