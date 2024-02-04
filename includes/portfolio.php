@@ -55,7 +55,7 @@ $topPosts = $queryTop->fetchAll();
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-apartment">
+          <div class="col-lg-4 col-md-6 portfolio-item filter-Apartment">
             <img src="assets/img/portfolio/portfolio-a-1-1.jpg" class="img-fluid" alt="">
             <div class="portfolio-info">
               <h4>$7,995,000</h4>

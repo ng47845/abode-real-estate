@@ -96,11 +96,19 @@
       <!-- <div class="background-image" style="background-image: url('assets\img\inner-page_bg.png');">
         <div class="background-overlay"></div>
       </div> -->
+
+      <?php
+        if (!empty($message)) : ?>
+            <div class="alert alert-primary">
+                <?php echo $message ?>
+            </div>
+        <?php endif; ?>
       <div class="container">
         <p>
           Live the luxury life.
         </p>
-<?php
+        
+    <?php
         if (!empty($message)) : ?>
             <div class="alert alert-primary">
                 <?php echo $message ?>

@@ -54,7 +54,20 @@ $topPosts = $queryTop->fetchAll();
           <li><a href="index.php">Home</a></li>
           <li>Residence Listing Details</li>
         </ol>
-        <h2>5 Promontory Pointe Ln, Las Vegas, NV 89135</h2>
+
+        <div class="portfolio-details-slider swiper">
+          <div class="swiper-wrapper align-items-center">
+
+            <?php foreach ($topPosts as $topposts): ?>
+        
+            <div class="swiper-slide">
+            <h2><?php echo $topposts['location'] ?></h2>
+            </div>
+
+            <?php endforeach; ?>
+
+          </div>
+        </div>
       </div>
     </section>
 

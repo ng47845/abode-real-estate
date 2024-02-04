@@ -99,17 +99,19 @@ if (isset($_POST['submit'])) {
       <!-- <div class="background-image" style="background-image: url('assets\img\inner-page_bg.png');">
         <div class="background-overlay"></div>
       </div> -->
-      <div class="container">
-        <p>
-          Live the luxury life.
-        </p>
-
-        <?php
+      <?php
         if (!empty($message)) : ?>
             <div class="alert alert-primary">
                 <?php echo $message ?>
             </div>
         <?php endif; ?>
+
+      <div class="container">
+        <p>
+          Live the luxury life.
+        </p>
+
+       
 
         <div class="form signup_form" style="width: 500px; margin: 0 auto">
         <h2>Register</h2>
@@ -119,7 +121,7 @@ if (isset($_POST['submit'])) {
                 </div>
                 <div class="form-group">
                     <label for="surname"></label>
-                    <input type="text" name="surname" id="surname" class="form-control" placeholder="Last Name" required minlength="4">
+                    <input type="text" name="surname" id="surname" class="form-control" placeholder="Last Name" required minlength="3">
                 </div>
                 <div class="form-group">
                     <label for="email"></label>
